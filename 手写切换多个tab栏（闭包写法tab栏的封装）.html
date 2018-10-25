@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{padding: 0;margin: 0;}
+        ul{list-style: none;}
+        .box1,.box2,.box3 {
+            width: 800px;
+            background-color: #eeeeee;
+            margin: 20px auto;
+        }
+        .top span{
+            display: inline-block;
+            width: 100px;
+            background-color: #cccccc;
+        }
+        .bottom{
+            width: 800px;
+            height: 400px;
+            font-family: SimSun-ExtB;
+            background-color: rebeccapurple;
+            overflow: hidden;
+        }
+        .bottom ul li{
+            width: 800px;
+            height: 400px;
+            background-color:pink;
+            display: none;
+        }
+        span.current{
+            background-color: pink;
+        }
+        .bottom li.show{
+            display: block;
+        }
+        .current{
+            background-color: pink;
+        }
+        .show{
+            display: block;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+                //首次先把所有的span和li元素获取过来
+  /*          function tab(obj) {
+                var target = document.getElementById(obj);
+                var spans = target.getElementsByTagName("span");
+                var lis = target.getElementsByTagName("li");
+
+                //遍历所有的span便签使之与li标签关联
+                for (var i = 0; i < spans.length; i++) {
+                    spans[i].onmouseover = tab1(i);
+                }
+
+                function tab1(num) {                //当鼠标经过一个span时
+                    return function () {
+                        for (var j = 0; j < spans.length; j++) {        //清除所有的span的样式，清除所有的lis的样式
+                            spans[j].className = "";
+                            lis[j].className = "";
+                        }
+                        spans[num].className = "current";                    //给当前span设置类名
+                        lis[num].className = "show";            //给对应的li设置类名
+                    }
+                }
+            }*/
+   // 以下写法为函数立即执行写法
+            function tab(obj) {
+                var target = document.getElementById(obj);
+                var spans = target.getElementsByTagName("span");
+                var lis = target.getElementsByTagName("li");
+
+                for (var i = 0; i < spans.length; i++) {
+                    spans[i].onmouseover =   function (num) {                //当鼠标经过一个span时
+                        return function () {
+                            for (var j = 0; j < spans.length; j++) {        //清除所有的span的样式，清除所有的lis的样式
+                                spans[j].className = "";
+                                lis[j].className = "";
+                            }
+                            spans[num].className = "current";                    //给当前span设置类名
+                            lis[num].className = "show";            //给对应的li设置类名
+                        }
+                    }(i);
+                }
+            }
+
+            tab("box1");
+            tab("box2");
+            tab("box3");
+        }
+    </script>
+</head>
+<body>
+<div class="box1"id="box1">
+    <div class="top" id="top1">
+        <span class="current">新闻</span>
+        <span>体育</span>
+        <span>娱乐</span>
+        <span>生活</span>
+    </div>
+    <div class="bottom" id="bottom1">
+      <ul>
+          <li class="show"><h1>新闻</h1></li>
+          <li>体育</li>
+          <li>娱乐</li>
+          <li>生活</li>
+      </ul>
+    </div>
+</div>
+
+<div class="box2" id="box2">
+    <div class="top" id="top2">
+        <span class="current">新闻</span>
+        <span>体育</span>
+        <span>娱乐</span>
+        <span>生活</span>
+    </div>
+    <div class="bottom" id="bottom2">
+        <ul>
+            <li class="show"><h1>新闻</h1></li>
+            <li>体育</li>
+            <li>娱乐</li>
+            <li>生活</li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="box3" id="box3">
+    <div class="top" id="top3">
+        <span class="current">新闻</span>
+        <span>体育</span>
+        <span>娱乐</span>
+        <span>生活</span>
+    </div>
+    <div class="bottom" id="bottom3">
+        <ul>
+            <li class="show"><h1>新闻</h1></li>
+            <li>体育</li>
+            <li>娱乐</li>
+            <li>生活</li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
